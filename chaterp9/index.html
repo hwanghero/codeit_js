@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Couple Story</title>
+    <meta charset="utf-8" />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="navbar">
+      <img id="logo" src="images/logo.png" width="157" />
+    </div>
+
+    <div class="main">
+      <div class="container">
+        <!-- 만난지 며칠? -->
+        <h2>만난지 <span id="day-count">00</span>일째</h2>
+
+        <div class="img-row">
+          <img src="images/female.png" width="148" />
+          <img src="images/dot.png" width="8" />
+          <img src="images/dot.png" width="8" />
+          <img src="images/heart.png" width="16" />
+          <img src="images/dot.png" width="8" />
+          <img src="images/dot.png" width="8" />
+          <img src="images/male.png" width="148" />
+        </div>
+
+        <!-- 만나기 시작한 날짜 -->
+        <div class="date-row">
+          <label for="start">시작일</label>
+          <input type="date" name="start" id="start" />
+        </div>
+
+        <!-- 며칠됐는지 계산하기! -->
+        <button id="calculate">결과 보기</button>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $("#calculate").on("click", cal_click);
+      $cal = $("#start");
+
+      function cal_click() {
+        if ($cal.val() === "") {
+          alert("시작일을 정해주세요!");
+          $cal.focus();
+          return;
+        }
+        var now_day = new Date(); // 현재 날짜
+        var arr = $cal[0]["value"].split("-");
+        var select_day = new Date(arr[0], arr[1], arr[2]); // 선택한 날짜
+        var diff = Math.abs(select_day.getTime() - now_day.getTime());
+        diff = Math.ceil(diff / (1000 * 3600 * 24) - 29);
+        $("#day-count").text(diff);
+      }
+      // 코드를 입력하세요!
+    </script>
+  </body>
+</html>
