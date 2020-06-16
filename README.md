@@ -1,3 +1,3 @@
 # codeit_js
 
-8-day learning
+1-day learning
